@@ -1,0 +1,577 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="WSGI（Web Server Gateway Interface，Web服务器网关接口，读成’wiz-gee’？）是Python语言定义的server或gateway与client或framework之间的一种简单而通用的接口，是一种标准，规范
+之前，Web应用框架的选择将限制可用的Web服务器的选择，反之亦然。而统一了两者交互的接口之后，只要符合这个规范，就能更自由的选择框架和服务器的组合了，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is WSGI">
+<meta property="og:url" content="http://yoursite.com/2016/03/what-is-wsgi/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="WSGI（Web Server Gateway Interface，Web服务器网关接口，读成’wiz-gee’？）是Python语言定义的server或gateway与client或framework之间的一种简单而通用的接口，是一种标准，规范
+之前，Web应用框架的选择将限制可用的Web服务器的选择，反之亦然。而统一了两者交互的接口之后，只要符合这个规范，就能更自由的选择框架和服务器的组合了，">
+<meta property="og:updated_time" content="2016-09-13T06:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What is WSGI">
+<meta name="twitter:description" content="WSGI（Web Server Gateway Interface，Web服务器网关接口，读成’wiz-gee’？）是Python语言定义的server或gateway与client或framework之间的一种简单而通用的接口，是一种标准，规范
+之前，Web应用框架的选择将限制可用的Web服务器的选择，反之亦然。而统一了两者交互的接口之后，只要符合这个规范，就能更自由的选择框架和服务器的组合了，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/what-is-wsgi/"/>
+
+  <title> What is WSGI | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                What is WSGI
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-09T16:52:39+08:00" content="2016-03-09">
+              2016-03-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>WSGI（Web Server Gateway Interface，Web服务器网关接口，读成’wiz-gee’？）<br>是Python语言定义的server或gateway与client或framework之间的一种简单而通用的接口，是一种标准，规范</p>
+<p>之前，Web应用框架的选择将限制可用的Web服务器的选择，反之亦然。而统一了两者交互的接口之后，只要符合这个规范，就能更自由的选择框架和服务器的组合了，同时应用可移植性提高了。</p>
+<p>WSGI是基于现存的CGI标准而设计的。<br>什么是CGI？<br>一个网站的动态内容肯定是程序生成的，光是静态的html页面无法达到这个效果。那么，这个程序就需要接受客户端的请求，然后进行相应处理，再返回给客户端。然后我们会发现，这个程序在处理客户端请求的时候，大部分时候会进行很多重复的工作，比如说HTTP请求的解析。也就是说，你的程序需要解析HTTP请求，我的程序也需要解析。</p>
+<p>于是为了DRY原则，Web服务器诞生了。（以下所说的都是CGI的工作模式）</p>
+<p>Web服务器可以解析这个HTTP请求，然后把这个请求的各种参数写进进程的环境变量，比如REQUEST_METHOD，PATH_INFO之类的。之后呢，服务器会调用相应的程序来处理这个请求，它会负责生成动态内容，然后返回给服务器，再由服务器转交给客户端。服务器和CGI程序之间通信，一般是通过进程的环境变量和管道。</p>
+<p>这样做虽然很清晰，但缺点就是每次有请求，服务器都会fork and exec，每次都会有一个新的进程产生，开销还是比较大的。</p>
+<p>而WSGI的规范是，有三个部分server，application，middleware。</p>
+<p>client发出request给server，<br>server将这个reuqest交给application处理，这个过程有一个middleware掺进来。middleware拦截（或者由server传给middleware）request，并做一些包装（或者预处理）以后传给application，application处理完给出response，同样经过middleware包装传给server，然后server将这个response返回给client。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">application</span><span class="params">(environ,start_response)</span>:</span></div><div class="line">    do_something</div><div class="line">    start_response</div></pre></td></tr></table></figure>
+<p>environ是一个dict，app 执行所需的数据，<br>start_response是一个callback，供上层调用，比如返回时包装用</p>
+<p>可见 middleware在server和application之间起调解作用：从WSGI服务器的角度来说，中间件扮演应用程序，而从应用程序的角度来说，中间件扮演服务器。</p>
+<p>所以middleware要具备一些功能，比如route（负载均衡），包装req和rsp，render（内容处理）<br>从设计模式的角度看 middleware 就是装饰器模式<br>middleware的好处 大概就是会细化工作，解耦server上的工作，可移植性</p>
+<p>可以说别的语言中的容器 就是一种middleware </p>
+<p>所以看现在的bottle 到底是个什么<br>Bottle is a fast, simple and lightweight WSGI micro web-framework for Python.</p>
+<ul>
+<li>Routing</li>
+<li>Template</li>
+<li>Utilities</li>
+<li>Server</li>
+</ul>
+<p>这下清晰一点了</p>
+<p>参考<br><a href="https://www.zhihu.com/question/19998865/answer/29395327" target="_blank" rel="external">https://www.zhihu.com/question/19998865/answer/29395327</a><br><a href="https://zh.wikipedia.org/wiki/Web服务器网关接口" target="_blank" rel="external">https://zh.wikipedia.org/wiki/Web服务器网关接口</a><br><a href="https://segmentfault.com/a/1190000003069785" target="_blank" rel="external">https://segmentfault.com/a/1190000003069785</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/git-study-1/" rel="next" title="git-study-1">
+                <i class="fa fa-chevron-left"></i> git-study-1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/haystack/" rel="prev" title="haystack">
+                haystack <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

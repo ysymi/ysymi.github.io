@@ -1,0 +1,616 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="framework," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为了接下来能快速的写那个反馈后台，需要从原理上理解bottle之前看过doc，今天准备在进一步，阅读source，
+这次看得是bottle 0.13-dev的代码， 4000多行
+介绍1-21行：简单的介绍bottle，然后有作者的大名
+准备工作23-59行：主要是为了给server是gevent和eventlet的情况 导入他们必须要用的monkey-patch库 ，monkey-patch就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bottle-notes">
+<meta property="og:url" content="http://yoursite.com/2016/03/bottle-notes/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="为了接下来能快速的写那个反馈后台，需要从原理上理解bottle之前看过doc，今天准备在进一步，阅读source，
+这次看得是bottle 0.13-dev的代码， 4000多行
+介绍1-21行：简单的介绍bottle，然后有作者的大名
+准备工作23-59行：主要是为了给server是gevent和eventlet的情况 导入他们必须要用的monkey-patch库 ，monkey-patch就是">
+<meta property="og:updated_time" content="2016-09-13T06:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bottle-notes">
+<meta name="twitter:description" content="为了接下来能快速的写那个反馈后台，需要从原理上理解bottle之前看过doc，今天准备在进一步，阅读source，
+这次看得是bottle 0.13-dev的代码， 4000多行
+介绍1-21行：简单的介绍bottle，然后有作者的大名
+准备工作23-59行：主要是为了给server是gevent和eventlet的情况 导入他们必须要用的monkey-patch库 ，monkey-patch就是">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/bottle-notes/"/>
+
+  <title> bottle-notes | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                bottle-notes
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-30T15:48:04+08:00" content="2016-03-30">
+              2016-03-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为了接下来能快速的写那个反馈后台，需要从原理上理解bottle<br>之前看过doc，今天准备在进一步，阅读source，</p>
+<p>这次看得是bottle 0.13-dev的代码， 4000多行</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>1-21行：<br>简单的介绍bottle，然后有作者的大名</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>23-59行：<br>主要是为了给server是gevent和eventlet的情况 导入他们必须要用的monkey-patch库 ，monkey-patch就是需要执行的时候动态修改代码的一个patch，因为gevent等异步相关的库会用自己的方法替换掉python标准库中的thread/socket<br>这里还写了bottle 的 arg_parse 供main使用</p>
+<p>70-120行：<br>导入一些标准库<br>其中getargspec是标准库inspect里，用来获取方法声明的参数名和默认参数值，<br>和处理json的函数需要安装simplejson或者标准库里没有</p>
+<p>122-219行：<br>作者尝试着处理py2和py3的不兼容的用法：<br>python3 才有 as 所以作者调取了sys.exc_info<br>print在2中是一个statement 而在3中是一个funciton 作者统一到了_stdout和_stderr<br>然后导入了python3和python2的库 并统一了一些方法<br>统一了tonat来处理字符串 tob和touni都想转成utf8<br>这里插播一点知识：当程序有了问题，找出问题然后解决，这叫Fix;而问题没法解决，就像个办法忽略这个错误，使其不能影响程序，这叫 Workaround<br>有些bug 作者就通过pass 这个exception，<br>或者写了个不能close的NCTextIOWrapper（never close，用一个空方法覆盖close）<br>然后写了三个property 特点分别是dict-like，cache-able， lazy ！！！这里没看懂</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>302-304行：<br>定义了一个BottleException 啥也没写</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>311-330行：<br>定义了各种route的exception，因为只是集成关系，所以都没有实现</p>
+<p>333-340行：<br>定义了一个替换函数 ！！！但是没看懂替换掉了什么样的字符串</p>
+<p>342-545行：<br>定义了Router类<br>Router是一个route-&gt;target的pair组成的有序集合，target可以是stirng，ID或者callable。route可以是静态或者动态的<br>！！！没太看懂<br>主要是有用正则匹配规则然后添加到集合里</p>
+<p>548-650行：<br>定了了Route类<br>route包括一个callback，运行在指定的一些配置下，<br>主要是一个_make_callback 函数 也就是call的函数主体 另外一个方法是get_undecorated_callback<br>可见make_callback 就是在decorate 要跑一遍plugin的操作</p>
+<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>657-1140行：<br>定了Bottle类<br>每一个bottle对象就是一个web 应用<br>init里可以看出<br>routes 是 Route的实例<br>router 是 Router的实例<br>config 是一个ConfigDict init只指定了 fatchall和autojson<br>plugins init的时候可能会装JSONPlugin和TemplatePlugin </p>
+<p>还有新加的hook机制<br>在init里指定了一些触发时机<br>随后也有一些添加删除的方法</p>
+<p>然后是一个mount方法 将一个以prefix开头的path 这样可以实现命名空间的分离<br>比如 parent_app.mount(‘/prefix/‘, child_app)      mount的对象可以是一个bottle的实例上也可以是其他的wsgi app上<br>mount的bottle自己的操作：先检查是否重复挂载，没有以/结尾等问题，如果么问题 就添加app里的数据给parent_app</p>
+<p>mount到其他app的操作：<br>设置了path-depth 然后给option设置了一些值 关键是设定了 app的callback方法 然后将所有prefix下的path都route到option设定的</p>
+<p>merge操作 可以合并routes 调用 add_route</p>
+<p>install 就是可以加入pulgin 在route的时候 pulgin有一定要求要callable或者有.apply方法<br>对应的有uninstall</p>
+<p>reset方法 清空缓存 重置路由 还要触发一个hook<br>close方法 关闭plugins<br>match方法 就是route的match</p>
+<p>geturl 算是一个utill 可以获取当前route的所在的url</p>
+<p>route方法 最常见的方法 就是字面意思 只不过是一个decorator<br>会覆盖之前的同一个path的router 主要docoratort的是实例化了一个Route然后append到bottle的route-list里<br>接下来 get post put delete patch 这5个方法 只是换了不一样的method</p>
+<p>_handle<br>比较重要的方法 先是设置了environ的一些参数 path handle route args等信息<br>然后调用了route的call 这里主要是有好多try 请求发送出去之前bind envrion 然后bind response 得到route call以后的结构以后 还要这个结果放到 response 还要在发送之前和之后触发对应时机的hook</p>
+<p>_cast 给call返回的结果设定一些header 或者进行一些包装 使得能够兼容WSGI<br>但是没有看到究竟是在哪里调用的</p>
+<p>wsgi<br>这个是bottle的application方法<br>第一句就是 out = _cast(_handle(environ))<br>然后是一些特殊情况要直接关闭out<br>然后start_response 是设定status_line 和 response_header<br>这里有一个try except 如果fetchall是false 就是可以给 debug用 之前init的地方有写 如果不是 就构造出一个error的response</p>
+<p>最后就是一个对内的解释 <strong>call</strong> </p>
+<h3 id="Response-amp-Request"><a href="#Response-amp-Request" class="headerlink" title="Response&amp;Request"></a>Response&amp;Request</h3><p>1148-1591行 :<br>BaseRequest<br>包含了一堆property 其中哦有一部分就是environ<br>就是http request的head的一些对应 最后有一个get set del</p>
+<p>1597-1612行：<br>HeaderProperty：<br>为header而写的一个decorator</p>
+<p>1615-1859行：<br>BaseResponse：<br>一个存储用的class 存储了 response的header body cookies<br>这两个类可以看得出来写一个web 应用框架还是很需要http的知识的 中途作者还遵守了几个rfc的要求<br>这个类里设定了header 还有 cookie 还是需要看的</p>
+<p>1862-1901行：<br>这里有一个local_property的方法是基于当前线程的local()的方法<br>然后有两个Local 一个LocalResponse一个LocalRequest<br>里边的有两个变量 bind 是 对应的 init 然 body就是local_property 目测用法就是可以随时get set del 当前处理的对象</p>
+<p>1905-1930行：<br>Response就是BaseResponse<br>Request就是BaseRequest<br>然后定了一个HttpResponse 除了init方法还有一个apply方法但是给一个叫other的对象强行绑response</p>
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>1937-1990行：<br>这里主要是两个内置的Plugin：<br>JsonPlugin：用之前定义的json_dumps 写一个decoretor 写好content_type 然后return<br>TemplatePlugin：从route里取出template的配置 然后调用view（一个在后边实现的decoretor）</p>
+<p>1995-2024行：<br>一个叫_ImportRedirect的类 看起来是导入module的但是没看到调用</p>
+<h3 id="Utilities"><a href="#Utilities" class="headerlink" title="Utilities"></a>Utilities</h3><p>2031-2131行：<br>MultiDict 一个key可以有多个value对应的的dict 不用all得到最新的 用all得到全部的</p>
+<p>2134-2279行：<br>一个FormDict 一个HeaderDict 一个WSGIHeaderDict 抢两个基于MultiDict的特定的Dict要有一些特定场合的实现 最后的这个需要处理字符问题 都是要实现一个 get set del 或者len items之类的操作</p>
+<p>2282-2416行：<br>一个ConfigDict<br>存储configuration的一个class<br>可以从module file dict中读取key/value的配置<br>具有setdefault 和 update方法 好像还有on_change的方法 就是调一遍listener<br>还有meta的get set fallback</p>
+<p>2419-2438行：<br>Appstack<br>list模拟的stack 每次返回list末尾的bottle实例</p>
+<p>2441-2552行：<br>WSGIFileWrapper<br>一个模拟文件的对象 iter 是一个不断读取数据的函数 yield使这一个函数非常简单</p>
+<p>2455-2468行：<br>_closeiter<br>一个用来给没有close方法的object加上这个方法 </p>
+<p>2471-2554行：<br>ResourceManager<br>管理resource感觉就是文件用的 可能要配合下面的FileUpload用<br>除了有个基本的path-list 有add-path lookup open 函数可以用 之外 还有cache的作用</p>
+<p>2557-2617行：<br>FileUpload  表示了一个上传的文件<br>两个核心的方法 获取filename save到一个地方</p>
+<h3 id="Application-Helper"><a href="#Application-Helper" class="headerlink" title="Application Helper"></a>Application Helper</h3><p>2624-2727行：<br>主要是3个方法<br>abort 直接rasie一个异常<br>redirect 设置一个重定向的response然后返回<br>static_file 相对比较复杂 要涉及到403 404 minetype if-modified-since range 作者一块一块处理的 最后返回了一个HTTPResponse</p>
+<h3 id="HTTP-Utilities"><a href="#HTTP-Utilities" class="headerlink" title="HTTP Utilities"></a>HTTP Utilities</h3><p>2734-2978行：<br>这里主要是一些parse的函数 处理date auth range http-header qsl<br>还有一些对cookie的decode 和 encode html的转义处理<br>返回一个函数对应的路由 这里可以返回多级匹配到的路由<br>还有一个path_shift 可以将script 和 path 两部分的目录shift给对方<br>还有一个auth_basic 是一个decoretor<br>最后有一个 简单的对外调用的接口 算是一种快捷方式吧</p>
+<h3 id="Server-Adapter"><a href="#Server-Adapter" class="headerlink" title="Server Adapter"></a>Server Adapter</h3><p>2985-3338行 :<br>有一个ServerAdapter<br>然后有十几个不同的server继承这个ServerAdapter 都重写了run方法</p>
+<h3 id="Application-Control"><a href="#Application-Control" class="headerlink" title="Application Control"></a>Application Control</h3><p>3345-3486行：<br>这里写了 load 负责加载module load_app 负责从appstack里去一个实例<br>然后有一个run 方法 负责跑起来实例 这个方法会一直block到server terminate<br>先是利用popen检测进程是不是terminate 接下来是正式的处理 获取bottle实例 安装插件 加载server模块 设置quite模式 reload的配置 需要加载下一个FileCheckerThread 除了继承Thread 就是 有一个每隔一个interval 比较一下 mtime 然后中断主进程 但是主进程是怎么重启的呢？</p>
+<h3 id="Template-Adapter"><a href="#Template-Adapter" class="headerlink" title="Template Adapter"></a>Template Adapter</h3><p>3535-3954行：<br>实现了一个BaseTemplate 有search prepare render config几个方法 然后和 还有作者实现的template adpater 都继承这个BaseTemplate ：moko jinja2 cheetah<br>作者自己还写了个simpletemplate 然后自己 写了个parseSyntax的类 如果是其他的模板 至少我见过的方法是实现一个插件的形式来用别的模板 </p>
+<p>3957-4021行：<br>这里又做了进一步的封装<br>template是已经做了一次整合 template_adapter作为参数拿进来用，然后 写了个view的decoretor 这次主要是为了使用方便吧 </p>
+<h3 id="Constant-amp-Global"><a href="#Constant-amp-Global" class="headerlink" title="Constant&amp;Global"></a>Constant&amp;Global</h3><p>4027-4098行：<br>设置了一些全局的参数的默认值 比如 DEBUG  HTTP_CODE对应的REASON ERROR_PAGE 的内容<br>然后有几个比较有意思的语句<br>request response local 都是thread-safe的 分别是当前正在处理的 request response namespace 不过namespace 不是bottle的<br>apps app default_app 都是Appstack<br>bottle还支持导入 ext的包 如果以后发展开来 这个会用的多吧</p>
+<p>4102-4153行：<br>main函数<br>取出配置的参数<br>什么host port 还有其他的config 一并读取没有问题以后 run </p>
+<p>参考：</p>
+<p><a href="http://blog.csdn.net/handsomekang/article/details/40297775" target="_blank" rel="external">http://blog.csdn.net/handsomekang/article/details/40297775</a><br><a href="http://my.oschina.net/taisha/blog/77413?fromerr=5koyI0Vc" target="_blank" rel="external">http://my.oschina.net/taisha/blog/77413?fromerr=5koyI0Vc</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/framework/" rel="tag">#framework</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/haystack/" rel="next" title="haystack">
+                <i class="fa fa-chevron-left"></i> haystack
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/ubuntu-tools/" rel="prev" title="ubuntu-tools">
+                ubuntu-tools <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常"><span class="nav-number">3.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">4.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">5.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-amp-Request"><span class="nav-number">6.</span> <span class="nav-text">Response&Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plugins"><span class="nav-number">7.</span> <span class="nav-text">Plugins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Utilities"><span class="nav-number">8.</span> <span class="nav-text">Utilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Helper"><span class="nav-number">9.</span> <span class="nav-text">Application Helper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Utilities"><span class="nav-number">10.</span> <span class="nav-text">HTTP Utilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server-Adapter"><span class="nav-number">11.</span> <span class="nav-text">Server Adapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Control"><span class="nav-number">12.</span> <span class="nav-text">Application Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Template-Adapter"><span class="nav-number">13.</span> <span class="nav-text">Template Adapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constant-amp-Global"><span class="nav-number">14.</span> <span class="nav-text">Constant&Global</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

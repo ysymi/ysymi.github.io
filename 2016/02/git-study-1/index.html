@@ -1,0 +1,582 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="开始1.clone12git clone repositorygit clone repository directory
+2.init12git init git init directory
+3.config1234git config --global user.name &quot;ff&quot;git config --global user.email bestone@is.megit config -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git-study-1">
+<meta property="og:url" content="http://yoursite.com/2016/02/git-study-1/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="开始1.clone12git clone repositorygit clone repository directory
+2.init12git init git init directory
+3.config1234git config --global user.name &quot;ff&quot;git config --global user.email bestone@is.megit config -">
+<meta property="og:updated_time" content="2016-09-13T06:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git-study-1">
+<meta name="twitter:description" content="开始1.clone12git clone repositorygit clone repository directory
+2.init12git init git init directory
+3.config1234git config --global user.name &quot;ff&quot;git config --global user.email bestone@is.megit config -">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/02/git-study-1/"/>
+
+  <title> git-study-1 | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git-study-1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-17T13:55:32+08:00" content="2016-02-17">
+              2016-02-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a><strong>开始</strong></h3><h4 id="1-clone"><a href="#1-clone" class="headerlink" title="1.clone"></a>1.clone</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> repository</div><div class="line">git <span class="built_in">clone</span> repository directory</div></pre></td></tr></table></figure>
+<h4 id="2-init"><a href="#2-init" class="headerlink" title="2.init"></a>2.init</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git init </div><div class="line">git init directory</div></pre></td></tr></table></figure>
+<h4 id="3-config"><a href="#3-config" class="headerlink" title="3.config"></a>3.config</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"ff"</span></div><div class="line">git config --global user.email bestone@is.me</div><div class="line">git config --global core.editor vim</div><div class="line">git config --list</div></pre></td></tr></table></figure>
+<h3 id="本地"><a href="#本地" class="headerlink" title="本地"></a><strong>本地</strong></h3><h4 id="1-add"><a href="#1-add" class="headerlink" title="1.add"></a>1.add</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add filename</div><div class="line">git add directroy/</div><div class="line">git add .</div></pre></td></tr></table></figure>
+<h4 id="2-rm"><a href="#2-rm" class="headerlink" title="2.rm"></a>2.rm</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rm filaname</div></pre></td></tr></table></figure>
+<h4 id="3-commit"><a href="#3-commit" class="headerlink" title="3.commit"></a>3.commit</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">'message'</span></div><div class="line">git commit --amend</div></pre></td></tr></table></figure>
+<h4 id="4-reset"><a href="#4-reset" class="headerlink" title="4.reset"></a>4.reset</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --filename</div></pre></td></tr></table></figure>
+<h4 id="5-checkout"><a href="#5-checkout" class="headerlink" title="5.checkout"></a>5.checkout</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout branchname</div><div class="line">git checkout filename</div><div class="line">git checkout commit</div></pre></td></tr></table></figure>
+<h4 id="6-stash"><a href="#6-stash" class="headerlink" title="6.stash"></a>6.stash</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git stash</div><div class="line">git stash list</div><div class="line">git stash apply</div></pre></td></tr></table></figure>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a><strong>记录</strong></h3><h4 id="1-status"><a href="#1-status" class="headerlink" title="1.status"></a>1.status</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+<h4 id="2-log"><a href="#2-log" class="headerlink" title="2.log"></a>2.log</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span></div></pre></td></tr></table></figure>
+<h4 id="3-diff"><a href="#3-diff" class="headerlink" title="3.diff"></a>3.diff</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git diff</div><div class="line">git diff --cache</div><div class="line">git diff commit commit</div><div class="line">git diff branchname</div></pre></td></tr></table></figure>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a><strong>分支</strong></h3><h4 id="1-branch"><a href="#1-branch" class="headerlink" title="1.branch"></a>1.branch</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git branch </div><div class="line">git branch branchname</div><div class="line">git branch <span class="_">-d</span> branchname</div><div class="line">git branch -D branchname</div></pre></td></tr></table></figure>
+<h4 id="2-merge"><a href="#2-merge" class="headerlink" title="2.merge"></a>2.merge</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge branchname</div></pre></td></tr></table></figure>
+<h3 id="远程"><a href="#远程" class="headerlink" title="远程"></a><strong>远程</strong></h3><h4 id="1-remote"><a href="#1-remote" class="headerlink" title="1.remote"></a>1.remote</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote -v</div><div class="line">git remote show</div></pre></td></tr></table></figure>
+<h4 id="2-push"><a href="#2-push" class="headerlink" title="2.push"></a>2.push</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin branchname</div></pre></td></tr></table></figure>
+<h4 id="3-pull"><a href="#3-pull" class="headerlink" title="3.pull"></a>3.pull</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure>
+<h4 id="4-fetch"><a href="#4-fetch" class="headerlink" title="4.fetch"></a>4.fetch</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/test/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/what-is-wsgi/" rel="prev" title="What is WSGI">
+                What is WSGI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-clone"><span class="nav-number">1.1.</span> <span class="nav-text">1.clone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-init"><span class="nav-number">1.2.</span> <span class="nav-text">2.init</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-config"><span class="nav-number">1.3.</span> <span class="nav-text">3.config</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地"><span class="nav-number">2.</span> <span class="nav-text">本地</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-add"><span class="nav-number">2.1.</span> <span class="nav-text">1.add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-rm"><span class="nav-number">2.2.</span> <span class="nav-text">2.rm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-commit"><span class="nav-number">2.3.</span> <span class="nav-text">3.commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-reset"><span class="nav-number">2.4.</span> <span class="nav-text">4.reset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-checkout"><span class="nav-number">2.5.</span> <span class="nav-text">5.checkout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-stash"><span class="nav-number">2.6.</span> <span class="nav-text">6.stash</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录"><span class="nav-number">3.</span> <span class="nav-text">记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-status"><span class="nav-number">3.1.</span> <span class="nav-text">1.status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-log"><span class="nav-number">3.2.</span> <span class="nav-text">2.log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-diff"><span class="nav-number">3.3.</span> <span class="nav-text">3.diff</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">4.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-branch"><span class="nav-number">4.1.</span> <span class="nav-text">1.branch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-merge"><span class="nav-number">4.2.</span> <span class="nav-text">2.merge</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程"><span class="nav-number">5.</span> <span class="nav-text">远程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-remote"><span class="nav-number">5.1.</span> <span class="nav-text">1.remote</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-push"><span class="nav-number">5.2.</span> <span class="nav-text">2.push</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-pull"><span class="nav-number">5.3.</span> <span class="nav-text">3.pull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-fetch"><span class="nav-number">5.4.</span> <span class="nav-text">4.fetch</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

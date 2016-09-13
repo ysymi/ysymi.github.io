@@ -1,0 +1,599 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="场景每个数据只会写入一次、读操作频繁、从不修改、很少删除
+背景&amp;amp;现状现有的缺点：目录 导致 磁盘操作次数多 费时文件元数据导致 存取效率 导致费时现有的架构：browser 请求 server 返回 cdn 或者 直接请求 cdncdn 后边是 stroage 
+系统特点
+分享照片而设计的对象存储技术
+高吞吐量和低延迟 减少磁盘操作 
+高容错 异地备份 
+高性价比 
+简单 容易开发和部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="haystack">
+<meta property="og:url" content="http://yoursite.com/2016/03/haystack/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="场景每个数据只会写入一次、读操作频繁、从不修改、很少删除
+背景&amp;amp;现状现有的缺点：目录 导致 磁盘操作次数多 费时文件元数据导致 存取效率 导致费时现有的架构：browser 请求 server 返回 cdn 或者 直接请求 cdncdn 后边是 stroage 
+系统特点
+分享照片而设计的对象存储技术
+高吞吐量和低延迟 减少磁盘操作 
+高容错 异地备份 
+高性价比 
+简单 容易开发和部署">
+<meta property="og:updated_time" content="2016-09-13T06:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="haystack">
+<meta name="twitter:description" content="场景每个数据只会写入一次、读操作频繁、从不修改、很少删除
+背景&amp;amp;现状现有的缺点：目录 导致 磁盘操作次数多 费时文件元数据导致 存取效率 导致费时现有的架构：browser 请求 server 返回 cdn 或者 直接请求 cdncdn 后边是 stroage 
+系统特点
+分享照片而设计的对象存储技术
+高吞吐量和低延迟 减少磁盘操作 
+高容错 异地备份 
+高性价比 
+简单 容易开发和部署">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/haystack/"/>
+
+  <title> haystack | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                haystack
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-22T23:51:38+08:00" content="2016-03-22">
+              2016-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>每个数据只会写入一次、读操作频繁、从不修改、很少删除</p>
+<h3 id="背景-amp-现状"><a href="#背景-amp-现状" class="headerlink" title="背景&amp;现状"></a>背景&amp;现状</h3><p>现有的缺点：<br>目录 导致 磁盘操作次数多 费时<br>文件元数据导致 存取效率 导致费时<br>现有的架构：<br>browser 请求 server 返回 cdn 或者 直接请求 cdn<br>cdn 后边是 stroage </p>
+<h3 id="系统特点"><a href="#系统特点" class="headerlink" title="系统特点"></a>系统特点</h3><ol>
+<li>分享照片而设计的对象存储技术</li>
+<li>高吞吐量和低延迟 减少磁盘操作 </li>
+<li>高容错 异地备份 </li>
+<li>高性价比 </li>
+<li>简单 容易开发和部署 （简约而不简单）</li>
+</ol>
+<h3 id="初期设计"><a href="#初期设计" class="headerlink" title="初期设计"></a>初期设计</h3><p>改动：cdn后边的stroage 变成 stroage server + nas（nas: 以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资的设备，其实是一个存储服务器。其成本远远低于使用服务器存储，而效率却远远高于后者）<br>优化：限制目录下文件数量（减少磁盘操作）<br>      文件打开 使用缓存（memcache）fd的方式 但是依旧不能解决冷数据的问题<br>小结：冷图片的问题需要单独拿出来解决 不能用钱解决ram/disk的比率而是要提高内存使用效率</p>
+<h3 id="haystack设计"><a href="#haystack设计" class="headerlink" title="haystack设计"></a>haystack设计</h3><p>cdn尽管为底层存储挡住了大部分请求 但是还是不够用（因为冷图很难进cdn，所以long tail请求是导致磁盘操作的原因）<br>所以需要解决底层io的瓶颈 bottleneck 通过减少无用元数据 同时打包图片成一个大文件 维护这个大文件<br>三个模块：Store 持久化保存原始数据 每个volume 100G 多个physic对应一个logic<br>Directory 负责维护 volume信息和关系 image的一些更有用的元信息 Cache 在cdn后边的一个部署一个 内部cdn 为Store挡请求 减小外部cdn的依赖<br>url的设计 也体现了这个架构的特点上层失效才去下层拿数据，直到底层：<br>cdn/cache/store/volume/offset</p>
+<p>接下来是更细致的介绍</p>
+<ol>
+<li><p>Directory<br>四个作用：<br>保存logic到physic的关系<br>对写logic和读physic两种操作做均衡<br>分发photo处理对象cdn or cache 路由的功能<br>指定volume状态 例如reaonly 粒度是machine</p>
+</li>
+<li><p>Cache<br>直接返回request里的所需的图片 没有命中就可以从cdn里取 大致上就是一个分布式hash表 </p>
+</li>
+<li><p>Store<br>一个很简单的存储系统 给一些信息 然后成功返回图片 否则给错误提示<br>结构是每个机器好多个volunme 每个volume好多个file 给定volume id 和 offset 就可以定位文件（Haystack design: retrieving the filename, offset, and size for a particular photo without needing disk operations） 内存中会有voluem的fd 和有一个image id to meta数据的map<br>每个needle就是一个file<br>刚刚说的那个map 就是 key，alternative-key 到 offset，size，flag的一个映射<br>用来快速检索needle 机器crash后可以全盘扫描后生成这个map<br>三种基本操作：<br>读 cookie 随上传时间给定 可以保证安全性 防止伪造url攻击 map里取出value后要验证cookie 和 flag才返回给cache 然后cache在网上返回<br>写 先从Directory里获取volume位置 然后提供cookie key alternativekey 和原数据 往logic写入的同时 physic也写入 准确的说是append。map也要更新。对于修改的操作 要用相同的key 和 alternativekey 添加一个新的neddle 如果新needle在这个volume，更大的offset意味着更新数据 如果添加啊到别的volume 就在directory上进行改动<br>删 更新 map（内存中） 超级块中的flag 标记删除</p>
+</li>
+<li><p>index<br>为了重启后快速恢复内存里的map 每一个volume有一个index 这个index布局与volume中的needle <strong>类似</strong> 顺序与volume中的needle <strong>相同</strong> 内容就map的key+value<br>写文件时map是同步更新的 而index是异步更新的 这意味着index不是最新的<br>删文件时 也不会去更新index 这意味着index不能反映图片是否删除<br>没有index记录的needle是一个orphan 重启时可以检查（从index末尾也就是volume末尾开始处理orphan）然后才恢复map<br>删除的问题 在检索的时候 可以通过取出文件后检查原数据中的flag来更新map</p>
+</li>
+<li><p>故障恢复<br>这部分主要有两个工作 探测 和 修复<br>探测叫pitch-fork 定期远程测试machine 测试连接 avail size 等 如果有问题就直接标记为readonly 线下人工修复<br>修复一般很快 只有非常严重的情况 需要大量同步 这种修复很耗时 因为nic有上限</p>
+</li>
+<li><p>优化<br>这里有几个很有意义的优化：<br><strong>压缩</strong> 回收重复 已删除文件的空间 就是从现有volume复制到新volume跳过不需要的 needle Directory也需要做改动<br><strong>内存效率</strong> 之前好奇index的地方为什么检索的时候不查map的flag 原因是map里其实不存flag和cookie offset=0表示删掉了 取出来才检查cookie（问题不但没解决反而多了 1.那为什么检索的时候不看map的offset呢？2.忘掉了 囧… 实在是不能想起来了）<br>还有一点就是减小了每一个image inode需要使用内存<br><strong>批量上传</strong> 大型连续写时的性能要比随机写好</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/what-is-wsgi/" rel="next" title="What is WSGI">
+                <i class="fa fa-chevron-left"></i> What is WSGI
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/bottle-notes/" rel="prev" title="bottle-notes">
+                bottle-notes <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景-amp-现状"><span class="nav-number">2.</span> <span class="nav-text">背景&现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统特点"><span class="nav-number">3.</span> <span class="nav-text">系统特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初期设计"><span class="nav-number">4.</span> <span class="nav-text">初期设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#haystack设计"><span class="nav-number">5.</span> <span class="nav-text">haystack设计</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

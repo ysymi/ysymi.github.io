@@ -1,0 +1,582 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ubuntu," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="中午瞌睡的时候 不小心把 /etc目录给删掉了 没有办法拷别人的etc 只好重装顺便记一下必备的工具
+1. chrome从官网下载安装包1dpkg -i  google-chrome-stable_current_amd64.deb
+2. sogou pinyin从官网下载安装包 如果没装fcitx 要先装fcitx123sudo apt-get install fcitxdpkg -i sogo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu-tools">
+<meta property="og:url" content="http://yoursite.com/2016/04/ubuntu-tools/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="中午瞌睡的时候 不小心把 /etc目录给删掉了 没有办法拷别人的etc 只好重装顺便记一下必备的工具
+1. chrome从官网下载安装包1dpkg -i  google-chrome-stable_current_amd64.deb
+2. sogou pinyin从官网下载安装包 如果没装fcitx 要先装fcitx123sudo apt-get install fcitxdpkg -i sogo">
+<meta property="og:updated_time" content="2016-09-13T06:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu-tools">
+<meta name="twitter:description" content="中午瞌睡的时候 不小心把 /etc目录给删掉了 没有办法拷别人的etc 只好重装顺便记一下必备的工具
+1. chrome从官网下载安装包1dpkg -i  google-chrome-stable_current_amd64.deb
+2. sogou pinyin从官网下载安装包 如果没装fcitx 要先装fcitx123sudo apt-get install fcitxdpkg -i sogo">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/ubuntu-tools/"/>
+
+  <title> ubuntu-tools | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ubuntu-tools
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-01T13:54:01+08:00" content="2016-04-01">
+              2016-04-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>中午瞌睡的时候 不小心把 /etc目录给删掉了 没有办法拷别人的etc 只好重装<br>顺便记一下必备的工具</p>
+<h4 id="1-chrome"><a href="#1-chrome" class="headerlink" title="1. chrome"></a>1. chrome</h4><p>从<a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank" rel="external">官网</a>下载安装包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpkg -i  google-chrome-stable_current_amd64.deb</div></pre></td></tr></table></figure></p>
+<h4 id="2-sogou-pinyin"><a href="#2-sogou-pinyin" class="headerlink" title="2. sogou pinyin"></a>2. sogou pinyin</h4><p>从<a href="http://pinyin.sogou.com/linux/" target="_blank" rel="external">官网</a>下载安装包 如果没装fcitx 要先装fcitx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install fcitx</div><div class="line">dpkg -i sogoupinyin_2.0.0.0068_amd64.deb</div><div class="line">sudo apt-get install <span class="_">-f</span> -y</div></pre></td></tr></table></figure></p>
+<p>all setttings -&gt; language support -&gt; keyboard input method system<br>选择fcitx 然后 重启</p>
+<h4 id="3-sublime-text"><a href="#3-sublime-text" class="headerlink" title="3. sublime-text"></a>3. sublime-text</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/sublime-text-3</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install sublime-text-installer</div></pre></td></tr></table></figure>
+<p>从<a href="https://packagecontrol.io/installation" target="_blank" rel="external">这里</a>可以找到Package Control的安装脚本<br>上次发现的超酷炫的<a href="https://github.com/kkga/spacegray/" target="_blank" rel="external">theme</a></p>
+<h4 id="4-pycharm"><a href="#4-pycharm" class="headerlink" title="4. pycharm"></a>4. pycharm</h4><p>一个很强大的py ide 下载地址在<a href="https://www.jetbrains.com/pycharm/download/" target="_blank" rel="external">这里</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar xfz pycharm-professional-2016.1.2.tar.gz</div><div class="line"><span class="built_in">cd</span> pycharm-professional-2016.1.2/bin</div><div class="line">install.sh</div></pre></td></tr></table></figure></p>
+<p>然后发现个可以注册lience的<a href="http://idea.qinxi1992.cn/" target="_blank" rel="external">地方</a></p>
+<h4 id="5-vim"><a href="#5-vim" class="headerlink" title="5. vim"></a>5. vim</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install vim</div></pre></td></tr></table></figure>
+<p>配置文件 ~/.vimrc 还好已经备份</p>
+<h4 id="6-ssh"><a href="#6-ssh" class="headerlink" title="6. ssh"></a>6. ssh</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<p>直接拷贝 .ssh 文件夹里的两个key<br>或者重新生成新的</p>
+<h4 id="6-git-没什么可多说的"><a href="#6-git-没什么可多说的" class="headerlink" title="6. git 没什么可多说的"></a>6. git 没什么可多说的</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install git-core</div></pre></td></tr></table></figure>
+<h4 id="7-terminator"><a href="#7-terminator" class="headerlink" title="7. terminator"></a>7. terminator</h4><p>还有个tmux大家都在用 有空也研究一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install terminator</div><div class="line">sudo update-alternatives --config x-terminal-emulator</div></pre></td></tr></table></figure></p>
+<h4 id="7-java"><a href="#7-java" class="headerlink" title="7. java"></a>7. java</h4><p>跟c/c++一样 有一些软件得有java环境才能运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webupd8team/java </div><div class="line">sudo apt-get update </div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">java -version</div></pre></td></tr></table></figure></p>
+<p>还有JAVA_HOME这个环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-8-oracle/ <span class="comment"># ~/.bashrc </span></div><div class="line">or</div><div class="line">JAVA_HOME=<span class="string">"/usr/lib/jvm/java-8-oracle/"</span>      <span class="comment"># /etc/environment</span></div></pre></td></tr></table></figure></p>
+<p> 参考：</p>
+<p> <a href="http://blog.csdn.net/tao_627/article/details/45054057" target="_blank" rel="external">http://blog.csdn.net/tao_627/article/details/45054057</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ubuntu/" rel="tag">#ubuntu</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/bottle-notes/" rel="next" title="bottle-notes">
+                <i class="fa fa-chevron-left"></i> bottle-notes
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-chrome"><span class="nav-number">1.</span> <span class="nav-text">1. chrome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-sogou-pinyin"><span class="nav-number">2.</span> <span class="nav-text">2. sogou pinyin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-sublime-text"><span class="nav-number">3.</span> <span class="nav-text">3. sublime-text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-pycharm"><span class="nav-number">4.</span> <span class="nav-text">4. pycharm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-vim"><span class="nav-number">5.</span> <span class="nav-text">5. vim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-ssh"><span class="nav-number">6.</span> <span class="nav-text">6. ssh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-git-没什么可多说的"><span class="nav-number">7.</span> <span class="nav-text">6. git 没什么可多说的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-terminator"><span class="nav-number">8.</span> <span class="nav-text">7. terminator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-java"><span class="nav-number">9.</span> <span class="nav-text">7. java</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

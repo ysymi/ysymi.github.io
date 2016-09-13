@@ -1,0 +1,710 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="# Vim使用
+标签（空格分隔）： 工具 vim
+
+模式
+normal-mode 也叫command-mode，用于操作
+insert-mode 用于编辑i 当前光标处插入a 当前光标后插入I 当前行首A 当前行尾o 当前光标行后插入新行O 当前行前插入新行cw 剪切当前光标开始的word，并插入 
+visual-mode 暂时不清楚
+
+打开&amp;amp;保存&amp;amp;退出vim /path/to/y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="厚积薄发">
+<meta property="og:url" content="http://yoursite.com/2016/09/vim/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="# Vim使用
+标签（空格分隔）： 工具 vim
+
+模式
+normal-mode 也叫command-mode，用于操作
+insert-mode 用于编辑i 当前光标处插入a 当前光标后插入I 当前行首A 当前行尾o 当前光标行后插入新行O 当前行前插入新行cw 剪切当前光标开始的word，并插入 
+visual-mode 暂时不清楚
+
+打开&amp;amp;保存&amp;amp;退出vim /path/to/y">
+<meta property="og:updated_time" content="2016-09-13T07:30:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="厚积薄发">
+<meta name="twitter:description" content="# Vim使用
+标签（空格分隔）： 工具 vim
+
+模式
+normal-mode 也叫command-mode，用于操作
+insert-mode 用于编辑i 当前光标处插入a 当前光标后插入I 当前行首A 当前行尾o 当前光标行后插入新行O 当前行前插入新行cw 剪切当前光标开始的word，并插入 
+visual-mode 暂时不清楚
+
+打开&amp;amp;保存&amp;amp;退出vim /path/to/y">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/vim/"/>
+
+  <title>  | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-13T15:29:48+08:00" content="2016-09-13">
+              2016-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>#</em> Vim使用</p>
+<p>标签（空格分隔）： 工具 vim</p>
+<hr>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><ul>
+<li>normal-mode 也叫command-mode，用于操作</li>
+<li>insert-mode 用于编辑<br><strong>i</strong> 当前光标处插入<br><br><strong>a</strong> 当前光标后插入<br><br><strong>I</strong> 当前行首<br><br>A 当前行尾<br><br>o 当前光标行后插入新行<br><br>O 当前行前插入新行<br><br>cw 剪切当前光标开始的word，并插入 <br></li>
+<li>visual-mode 暂时不清楚</li>
+</ul>
+<h2 id="打开-amp-保存-amp-退出"><a href="#打开-amp-保存-amp-退出" class="headerlink" title="打开&amp;保存&amp;退出"></a>打开&amp;保存&amp;退出</h2><p>vim /path/to/your/file<br>:e /path/to/your/file</p>
+<p>:w<br>:x 需要时保存<br>:wq<br>ZZ<br>:q! 退出不保存</p>
+<h2 id="复制-amp-粘贴"><a href="#复制-amp-粘贴" class="headerlink" title="复制&amp;粘贴"></a>复制&amp;粘贴</h2><h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>命令</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页间</td>
+<td>ctrl + b</td>
+<td>向前翻页</td>
+<td>Backward</td>
+</tr>
+<tr>
+<td></td>
+<td>ctrl + f</td>
+<td>先后翻页</td>
+<td>Forward</td>
+</tr>
+<tr>
+<td>行间</td>
+<td>gg</td>
+<td>第一行</td>
+<td>非空白字</td>
+</tr>
+<tr>
+<td></td>
+<td>G</td>
+<td>最后一行</td>
+<td>goto，实际是调转到某一行行首，XG</td>
+</tr>
+<tr>
+<td></td>
+<td>X%</td>
+<td>按百分比跳转</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>hjkl</td>
+<td>左下上右</td>
+<td>使手不必离开打字区，以加快打字速度<br>支持重复自己</td>
+</tr>
+<tr>
+<td></td>
+<td>:X</td>
+<td>跳转到某行</td>
+<td></td>
+</tr>
+<tr>
+<td>行间</td>
+<td>0</td>
+<td>行首</td>
+<td>非空白字符，^的映射键</td>
+</tr>
+<tr>
+<td></td>
+<td>$</td>
+<td>行尾</td>
+<td></td>
+</tr>
+<tr>
+<td>语义</td>
+<td>w</td>
+<td>后一个单词首部</td>
+<td>iskeyword</td>
+</tr>
+<tr>
+<td></td>
+<td>b</td>
+<td>前一个单词首部</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>e</td>
+<td>后一个单词尾部</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ge</td>
+<td>前一个单词尾部</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>(</td>
+<td>前一句首部</td>
+<td>.!?结尾的行或空白符</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td>后一句尾部</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>{</td>
+<td>前一段</td>
+<td>空白行间隔</td>
+</tr>
+<tr>
+<td></td>
+<td>}</td>
+<td>后一段</td>
+</tr>
+</tbody>
+</table>
+<h2 id="查找-amp-替换"><a href="#查找-amp-替换" class="headerlink" title="查找&amp;替换"></a>查找&amp;替换</h2><p>/pattern 从首行开始向下查找 n 后一个 N 前一个 </p>
+<p>?pattern 从尾行开始向上查找 n 后一个 N 前一个 </p>
+<p>%  匹配([{ 间跳转</p>
+<p># 所在单词上一个 </p>
+<p>* 所在单词下一个</p>
+<p>:[addr]s/old/new/[option]</p>
+<ul>
+<li>[addr] 表示替换范围，默认为当前行。 st,ed：起始范围，., ^, $,N分别表示 当前行，首行，尾行，数字代表的某一行，比如：1，20： 从 第一行到第20行；“. ,$” ：从当前行到文件尾；% 整个文件的，相当于1，$</li>
+<li>s : 表示替换操作，substitute</li>
+<li>old</li>
+<li>new</li>
+<li>[option] : 参数，比如：i 忽略大小写；g 表示全局替换; c 表示进行确认</li>
+</ul>
+<p>相关设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">:set hls  # 高亮搜索结果 </div><div class="line">:set incsearch  # 增量式搜索，即时搜索，</div><div class="line">:set ignorecase # 忽略大小写</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模式"><span class="nav-number">1.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打开-amp-保存-amp-退出"><span class="nav-number">2.</span> <span class="nav-text">打开&保存&退出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制-amp-粘贴"><span class="nav-number">3.</span> <span class="nav-text">复制&粘贴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动"><span class="nav-number">4.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找-amp-替换"><span class="nav-number">5.</span> <span class="nav-text">查找&替换</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
