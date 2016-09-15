@@ -1,0 +1,591 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="终端、Shell、控制台，这几个词确实带着久远历史的气息，天天用，但是却不知道他们的故事，多少还是有点不应该的哈。
+什么是终端计算机核心部分是主机，包括内存，处理器，磁盘等，外围设备是为了与人交互，以便机器能够接受指令和显示结果。所以说终端实际上指的是硬件，是进行人机交互的接口。
+
+计算机 = 主机 + 终端终端 = 输入设备 + 输出设备
+
+早期的计算机，显示器和键盘都集成在主机上，只能同时有一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="terminal和Shell">
+<meta property="og:url" content="http://yoursite.com/2016/09/terminal/index.html">
+<meta property="og:site_name" content="厚积薄发">
+<meta property="og:description" content="终端、Shell、控制台，这几个词确实带着久远历史的气息，天天用，但是却不知道他们的故事，多少还是有点不应该的哈。
+什么是终端计算机核心部分是主机，包括内存，处理器，磁盘等，外围设备是为了与人交互，以便机器能够接受指令和显示结果。所以说终端实际上指的是硬件，是进行人机交互的接口。
+
+计算机 = 主机 + 终端终端 = 输入设备 + 输出设备
+
+早期的计算机，显示器和键盘都集成在主机上，只能同时有一">
+<meta property="og:updated_time" content="2016-09-15T08:47:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="terminal和Shell">
+<meta name="twitter:description" content="终端、Shell、控制台，这几个词确实带着久远历史的气息，天天用，但是却不知道他们的故事，多少还是有点不应该的哈。
+什么是终端计算机核心部分是主机，包括内存，处理器，磁盘等，外围设备是为了与人交互，以便机器能够接受指令和显示结果。所以说终端实际上指的是硬件，是进行人机交互的接口。
+
+计算机 = 主机 + 终端终端 = 输入设备 + 输出设备
+
+早期的计算机，显示器和键盘都集成在主机上，只能同时有一">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/terminal/"/>
+
+  <title> terminal和Shell | 厚积薄发 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">厚积薄发</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">yesterday, you said tomorrow</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                terminal和Shell
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-15T10:31:29+08:00" content="2016-09-15">
+              2016-09-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>终端、Shell、控制台，这几个词确实带着久远历史的气息，天天用，但是却不知道他们的故事，多少还是有点不应该的哈。</p>
+<h1 id="什么是终端"><a href="#什么是终端" class="headerlink" title="什么是终端"></a>什么是终端</h1><p>计算机核心部分是主机，包括内存，处理器，磁盘等，外围设备是为了与人交互，以便机器能够接受指令和显示结果。所以说终端实际上指的是硬件，是进行人机交互的接口。</p>
+<blockquote>
+<p>计算机 = 主机 + 终端<br><br>终端 = 输入设备 + 输出设备</p>
+</blockquote>
+<p>早期的计算机，显示器和键盘都集成在主机上，只能同时有一个用户进行操作。<br><a href="https://zh.wikipedia.org/zh/%E8%82%AF%C2%B7%E6%B1%A4%E6%99%AE%E9%80%8A" target="_blank" rel="external">Ken Thompson</a> 和 <a href="https://zh.wikipedia.org/wiki/%E4%B8%B9%E5%B0%BC%E6%96%AF%C2%B7%E9%87%8C%E5%A5%87" target="_blank" rel="external">Dennis Ritchie</a>使用了一种叫做电传打字机的廉价设备作为输入设备，输出结果打印在纸上。可以使用多组输入输出设备，就能实现多用户的同时操作。<br><br>电传打字机，很别扭的名字，英文是Teletypes，缩写tty，输入who命令的时候能看到这个缩写。</p>
+<h1 id="什么是控制台"><a href="#什么是控制台" class="headerlink" title="什么是控制台"></a>什么是控制台</h1><p>刚刚输入who命令时，第一行tty的名字是console，那这个控制台又是什么呢。通常终端都是通过线路连接到主机。有一个终端却与众不同，它与主机是一体的，不需要连线。这个特殊的终端就是console。console与terminal的角色大概类似于皇后和妃子。当系统启动出现错误时，错误信息会显示在console的显示器屏幕上，而不会显示在一般的终端上。这是因为系统还没有成功启动，用户是不能在一般的终端登录系统的。另外，当主机需要维护或修复问题时，Unix以单用户模式启动(single-user mode)。在单用户模式下，只有console才能连接到主机，其他终端没有权限访问主机。</p>
+<p>以前，console的用户是机器的管理员，terminal的用户是普通用户。随着个人计算机的普及，每个人都是自己机器的管理员，console和terminal也就没什么区别了。</p>
+<h1 id="什么是终端模拟器"><a href="#什么是终端模拟器" class="headerlink" title="什么是终端模拟器"></a>什么是终端模拟器</h1><p>现在我们应该知道真实的终端是指输入输出用的硬件，而我们日常使用的Mac下的Iterm2，终端应用，ubuntu下的XTerm，UXTerm，Windows下的命令提示符，这些都是终端模拟器（Terminal Emulator），主机认为他们就是真正的终端。</p>
+<p>终端分字符终端(Character Terminal)和图形终端(Graphics Terminal)，字符终端就是我们常看到的终端，图形终端没见过，不知道是不是示波器那种。终端模拟器也有两种，一种是终端窗口，另一种是虚拟控制台。我们看到的命令行是模拟字符终端的终端窗口。虚拟控制台的话，比如Linux会同时启动七个不同的虚拟控制台。第一个到第六个虚拟控制台是全屏的字符终端，第七个虚拟控制台是图形终端，用来运行GUI程序。从图形终端切换到字符终端，我们只需按快捷键Ctrl+Alt+F1，或 Ctrl+Alt+F2…….Ctrl+Alt+F6。要切换回图形终端，只需按快捷键Ctrl+Alt+F7。当图形终端崩溃时，我们可以按快捷键切换到这六个字符终端的其中一个，然后输入命令修复问题或重启系统。</p>
+<p>为什么会有终端模拟器呢？可能是为了远程登录别人的计算机，也可能是为了让新的输入输出设备兼容以前的计算机。或者是为了并行工作，人比机器慢，软件实现的终端可以复用硬件终端！还能比物理终端更好用，更强大。</p>
+<h1 id="什么是Shell"><a href="#什么是Shell" class="headerlink" title="什么是Shell"></a>什么是Shell</h1><p>怎么强大呢？这里要说的是Shell。Shell是什么呢？脚本语言？脚本引擎？<br></p>
+<p>Shell是一种命令解释器，它接受用户输入的指令，将其转换为一系列系统调用并创建进程执行。<br>比如，当你执行<code>rm *.py</code>时，删除当前路径下的所有python文件，实际上是执行 <code>rm demo1.py demo2.py demo3.py</code>，谁去匹配<code>*.py</code>呢？肯定不是rm命令，不符合unix的哲学。答案是，Shell。<br><br>它之所以被称作Shell是因为它隐藏了操作系统低层的细节,就像一个外壳一样包着里边的系统内核。Shell实际上是人和操作系统间交互的接口。类似编译器是将高级语言翻译成机器语言，那Shell就是把命令翻译成系统调用。<br></p>
+<p>图形化的界面也是一种Shell，右键单击新建文件夹的时候，跟你输入mkdir没什么区别，对吧？<br>只不过这个命令解释器支持一些复杂的逻辑，就把命令上升到的了脚本的层次。也就有了所谓的Shell编程，只不过大家讨论Shell脚本更多一些，就把Shell和Shell脚本当一回事了。和python一样，既支持交互式也支持脚本模式，其实应该是python借鉴Shell的运行方式。<br>Shell有各种实现，其中bash是众多Shell的集大成者。</p>
+<p>Shell和终端模拟器，一个是负责软件层面用户和操作系统的交互，一个是负责硬件层面用户和机器的交互。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><blockquote>
+<p>万物之源是Unix，万变不离其宗。</p>
+</blockquote>
+<p>一个计算机系统需要与人交互，就要有外围的输入输出设备，即终端。管理员的终端叫控制台，root角色的终端。在一个多用户的系统中，多终端显然是硬件上的一个必要条件。发展出虚拟终端以后，用户在终端窗口内输入命令，传给连接着主机的进程，这个进程就是Shell。Shell以为自己跟真实的终端相连，其实他是跟终端模拟器相连。</p>
+<p>总的来看，人跟机器的交互有很了很大变化，但是底层的机制还是一样的。</p>
+<p>PS. Uinx系统一开始就设计为一个单主机多终端的多用户系统。比如说，我们可以用多套显示器和键盘鼠标连接同一个机箱（有线或者无线，直连或者远程，前提是有权限），来构建一个可多人同时使用的计算机系统。windows系统虽然号称是多任务多用户系统，但windows对多用户的定义是可以创建多个账号。在windows系统上，同一时间只能登录一个用户账号。Unix-like系统允许多个账号同时登录，是真正的多用户系统.</p>
+<p>参考：</p>
+<ol>
+<li><a href="https://www.linuxdashen.com/你真的知道什么是终端吗？" target="_blank" rel="external">https://www.linuxdashen.com/你真的知道什么是终端吗？</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/虚拟终端" target="_blank" rel="external">https://zh.wikipedia.org/wiki/虚拟终端</a></li>
+<li><a href="https://www.zhihu.com/question/21711307" target="_blank" rel="external">https://www.zhihu.com/question/21711307</a></li>
+<li><a href="http://blog.csdn.net/on_1y/article/details/20203963" target="_blank" rel="external">http://blog.csdn.net/on_1y/article/details/20203963</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/vim/" rel="next" title="vim使用">
+                <i class="fa fa-chevron-left"></i> vim使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/avatar.jpg"
+               alt="FF" />
+          <p class="site-author-name" itemprop="name">FF</p>
+          <p class="site-description motion-element" itemprop="description">努力是看不见的，能看见的只有结果</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是终端"><span class="nav-number">1.</span> <span class="nav-text">什么是终端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是控制台"><span class="nav-number">2.</span> <span class="nav-text">什么是控制台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是终端模拟器"><span class="nav-number">3.</span> <span class="nav-text">什么是终端模拟器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Shell"><span class="nav-number">4.</span> <span class="nav-text">什么是Shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FF</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
